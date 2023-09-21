@@ -1,0 +1,12 @@
+version: "3"
+services:
+  pygeoapi:
+    image: geopython/pygeoapi:latest
+    container_name: pygeoapi
+    ports:
+      - 5000:80
+    volumes:
+      - ./config/config.yml:/pygeoapi/local.config.yml
+      - ./code/kommonitor_process.py:/pygeoapi/pygeoapi/process/kommonitor_process.py
+      - ./code/plugin.py:/pygeoapi/pygeoapi/plugin.py
+    entrypoint: [ "bash", "-c", "pip install geopandas && /entrypoint.sh"]      
